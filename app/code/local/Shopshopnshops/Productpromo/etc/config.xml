@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * @category   Shopshopnshops
+ * @package    Shopshopnshops_Productpromo
+ * @author     ModuleCreator
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+ -->
+<config>
+    <modules>
+        <Shopshopnshops_Productpromo>
+            <version>0.1.0</version>
+        </Shopshopnshops_Productpromo>
+    </modules>
+    <frontend>
+        <routers>
+            <productpromo>
+                <use>standard</use>
+                <args>
+                    <module>Shopshopnshops_Productpromo</module>
+                    <frontName>productpromo</frontName>
+                </args>
+            </productpromo>
+        </routers>
+        <layout>
+            <updates>
+                <productpromo>
+                    <file>productpromo.xml</file>
+                </productpromo>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        <routers>
+			<productpromo>
+				<use>admin</use>
+				<args>
+					<module>Shopshopnshops_Productpromo</module>
+					<frontName>productpromo</frontName>
+				</args>
+			</productpromo>
+        </routers>
+    </admin>
+    <adminhtml>
+		<menu>
+			<productpromo module="productpromo">
+				<title>Productpromo</title>
+				<sort_order>71</sort_order>               
+				<children>
+					<items module="productpromo">
+						<title>Manage Items</title>
+						<sort_order>0</sort_order>
+						<action>productpromo/adminhtml_productpromo</action>
+					</items>
+				</children>
+			</productpromo>
+		</menu>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<Shopshopnshops_Productpromo>
+							<title>Productpromo Module</title>
+							<sort_order>10</sort_order>
+						</Shopshopnshops_Productpromo>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+		<layout>
+			<updates>
+				<productpromo>
+					<file>productpromo.xml</file>
+				</productpromo>
+			</updates>
+		</layout>
+    </adminhtml>   
+    <global>
+        <models>
+            <productpromo>
+                <class>Shopshopnshops_Productpromo_Model</class>
+                <resourceModel>productpromo_mysql4</resourceModel>
+            </productpromo>
+            <productpromo_mysql4>
+                <class>Shopshopnshops_Productpromo_Model_Mysql4</class>
+                <entities>
+                    <productpromo>
+                        <table>productpromo</table>
+                    </productpromo>
+                </entities>
+            </productpromo_mysql4>
+        </models>
+        <resources>
+            <productpromo_setup>
+                <setup>
+                    <module>Shopshopnshops_Productpromo</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </productpromo_setup>
+            <productpromo_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </productpromo_write>
+            <productpromo_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </productpromo_read>
+        </resources>
+        <blocks>
+            <productpromo>
+                <class>Shopshopnshops_Productpromo_Block</class>
+            </productpromo>
+        </blocks>
+        <helpers>
+            <productpromo>
+                <class>Shopshopnshops_Productpromo_Helper</class>
+            </productpromo>
+        </helpers>
+    </global>
+</config>

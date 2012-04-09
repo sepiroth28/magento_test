@@ -1,0 +1,287 @@
+<?php
+$id     = $this->getRequest()->getParam('edit_id');
+$model  = Mage::getModel('promoheader/promoheader')->load($id);
+
+	$images = explode(';',$model->getLarawan());
+	$image_text = explode(';',$model->getImageTextArray());
+	$button_text = explode(';',$model->getButtonTextArray());
+	$button_text_url = explode(';',$model->getButtonUrlArray());
+	$media_url = explode(';',$model->getMediaUrlArray());
+    $store_id = explode(';',$model->getStoreId());
+	$position = explode(';',$model->getLayoutPositionCss());
+	
+	$image_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'promoheader/' . $store_id[0] . '_';
+	
+	
+if($model->getLayoutType() == 'layout-1'):
+	define('BLOCK1',0);
+	define('BLOCK2',1);
+	define('BLOCK3',2);
+	$layout_id = 1;
+	
+?>
+<div id="content_block">
+	<ul class="layout_block">
+		<li class="layout_block-block">
+			<div class="layout_block-label">BLOCK 1</div>
+			<table class="layout-block-table">
+			<tbody><tr><td>
+				<input type="hidden" name="all_image" value="<?php echo $model->getLarawan(); ?>">
+				<label for="image_text_1">Image Text</label>
+					<input class="input-text promo-textfield" name="block[1][image_text]" value="<?php echo $image_text[BLOCK1] ?>" id="image_text_1" type="text"></td></tr><tr><td>
+				<label for="image_1">Upload Image</label>
+					<input class="promo-textfield" name="filename_1" id="filename_1" readonly="1" type="file"></td></tr><tr><td>
+				<?php 
+					
+					if($images[BLOCK1]!=""): ?>
+						<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'promoheader/' . $image_url . $images[BLOCK1]; ?>" onclick="imagePreview('layout1_block1_image'); return false;">
+							<img id="layout1_block1_image" src="<?php echo $image_url . $images[BLOCK1]; ?>" title="<?php echo $images[BLOCK1] ?>" alt="<?php echo $images[BLOCK1] ?>" height="22" width="22" class="small-image-preview v-middle">
+						</a>
+						<span class="delete-image">
+							<input type="checkbox" name="delete_image[1][delete]" value="1" class="checkbox" id="">
+							<label for="layout1_block1_upload_image_delete"> Delete Image</label>
+							
+						</span>
+				<?php endif; ?>
+				<input type="hidden" name="delete_image[1][value]" value="<?php echo $images[BLOCK1] ?>">
+							<label for="button_text_1">Button Text</label>
+							<input class="input-text promo-textfield" name="block[1][button_text]" id="button_text_1" type="text" value="<?php echo $button_text[BLOCK1] ?>" >
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label for="button_text_url_1">Button url</label>
+								<input class="input-text promo-textfield" name="block[1][button_url]" id="button_text_url_1" type="text" value="<?php echo $button_text_url[BLOCK1] ?>">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label for="promoheader-block-position">Position</label><br/>
+									<select id="layout1-block1-position" id="layout1-block1-position" onchange="createCssForThisBlock(1,1,1)">
+										<option >-select position-</option>
+										<option value="promoheader_left:promoheader_bottom" <?php echo $position[0]=='promoheader_left:promoheader_bottom'?"selected='selected'":'' ?> >LB (Bottom Left)</option>
+										<option value="promoheader_left:promoheader_top" <?php echo $position[0]=='promoheader_left:promoheader_top'?"selected='selected'":'' ?>>LT (Left Top)</option>
+										<option value="promoheader_right:promoheader_bottom" <?php echo $position[0]=='promoheader_right:promoheader_bottom'?"selected='selected'":'' ?>>RB (Right Bottom)</option>
+										<option value="promoheader_right:promoheader_top" <?php echo $position[0]=='promoheader_right:promoheader_top'?"selected='selected'":'' ?>>RT (Right Top)</option>
+								   </select>
+							</td>
+						</tr>
+						<tr>
+						<td>
+							<td>
+									<input class="input-text" type="hidden" id="layout1-block1-position-css" name="block[1][position]" value="<?php echo $position[0] ?>"/>
+									
+							</td>
+						</tr>
+					</tbody>
+				</table>
+</li>
+		<li class="layout_block-block">
+			<div class="layout_block-label">BLOCK 2</div>
+			<table class="layout-block-table">
+			<tbody><tr><td>
+				<label for="media_url_2">Media embed code</label>
+				<textarea class="input-text promo-textfield" name="block[2][media_url]" id="media_url_2"><?php echo $media_url[1] ?></textarea>
+			</td>
+			</tr>
+			</tbody>
+			</table>
+		</li>
+		<li class="layout_block-block">
+			<div class="layout_block-label">BLOCK 3</div>
+			<table class="layout-block-table">
+			<tbody><tr><td>
+				<label for="image_text_3">Image Text</label>
+					<input class="input-text promo-textfield" name="block[3][image_text]" id="image_text_3" type="text" value="<?php echo $image_text[2] ?>" ></td></tr><tr><td>
+				<label for="image_3">Upload Image</label>
+					<input class="promo-textfield" name="filename_3" id="filename_3" readonly="1" type="file"></td></tr><tr><td>
+				<?php 
+					
+					if($images[1]!=""): ?>
+						<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'promoheader/' . $image_url . $images[BLOCK3]; ?>" onclick="imagePreview('layout1_block3_image'); return false;">
+							<img id="layout1_block3_image" src="<?php echo $image_url . $images[1]; ?>" title="<?php echo $images[1] ?>" alt="<?php echo $images[1] ?>" height="22" width="22" class="small-image-preview v-middle">
+						</a>
+						<span class="delete-image">
+							<input type="checkbox" name="delete_image[1][delete]" value="1" class="checkbox" id="">
+							<label for="layout1_block3_upload_image_delete"> Delete Image</label>
+							
+						</span>
+				<?php endif; ?>
+				<input type="hidden" name="delete_image[3][value]" value="<?php echo $images[1] ?>">
+				<label for="button_text_3">Button Text</label>
+					<input value="<?php echo $button_text[2] ?>" class="input-text promo-textfield" name="block[3][button_text]" id="button_text_3" type="text"></td></tr><tr><td>
+					<label for="button_text_url_3">Button url</label>
+					<input value="<?php echo $button_text_url[2] ?>" class="input-text promo-textfield" name="block[3][button_url]" id="button_text_url_3" type="text"></td></tr>			
+					<tr>
+						<td>
+							<label for="promoheader-block-position">Position</label>
+							<br/>
+								<select id="layout1-block3-position" id="layout1-block3-position" onchange="createCssForThisBlock(1,3,1)">
+										<option >-select position-</option>
+										<option value="promoheader_left:promoheader_bottom" <?php echo $position[0]=='promoheader_left:promoheader_bottom'?"selected='selected'":'' ?> >LB (Bottom Left)</option>
+										<option value="promoheader_left:promoheader_top" <?php echo $position[0]=='promoheader_left:promoheader_top'?"selected='selected'":'' ?>>LT (Left Top)</option>
+										<option value="promoheader_right:promoheader_bottom" <?php echo $position[0]=='promoheader_right:promoheader_bottom'?"selected='selected'":'' ?>>RB (Right Bottom)</option>
+										<option value="promoheader_right:promoheader_top" <?php echo $position[0]=='promoheader_right:promoheader_top'?"selected='selected'":'' ?>>RT (Right Top)</option>
+								</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+									<input class="input-text" type="hidden" id="layout1-block3-position-css" name="block[3][position]" value="<?php echo $position[0] ?>"/>
+									
+							</td>
+					</tr>
+				</tbody></table>
+		</li>
+	</ul>
+</div>
+<?php
+elseif($model->getLayoutType() == 'layout-2'):
+	define('BLOCK1',0);
+	define('BLOCK2',1);
+	define('BLOCK3',2);
+	define('BLOCK4',3);
+	define('BLOCK5',4);
+	define('BLOCK6',5);
+	
+	$layout_id = 2;
+	
+?>
+<div id="content_block">
+	<ul class="layout_block">
+<?php
+	
+		renderEditControlForm($model->getLarawan(),$layout_id,1,$images,$image_text,$button_text,$button_text_url,$media_url,$store_id,$image_url,$position,1);
+		renderEditControlForm($model->getLarawan(),$layout_id,2,$images,$image_text,$button_text,$button_text_url,$media_url,$store_id,$image_url,$position,0);
+		renderEditControlForm($model->getLarawan(),$layout_id,3,$images,$image_text,$button_text,$button_text_url,$media_url,$store_id,$image_url,$position,0);
+		renderEditControlForm($model->getLarawan(),$layout_id,4,$images,$image_text,$button_text,$button_text_url,$media_url,$store_id,$image_url,$position,0);
+		renderEditControlForm($model->getLarawan(),$layout_id,5,$images,$image_text,$button_text,$button_text_url,$media_url,$store_id,$image_url,$position,0);
+		renderEditControlForm($model->getLarawan(),$layout_id,6,$images,$image_text,$button_text,$button_text_url,$media_url,$store_id,$image_url,$position,0);
+	
+?>
+	</ul>
+</div>
+
+<?php
+elseif($model->getLayoutType() == 'layout-3'):
+	define('BLOCK1',0);
+	define('BLOCK2',1);
+	define('BLOCK3',2);
+	define('BLOCK4',3);
+
+	$layout_id = 3;
+	
+?>
+<div id="content_block">
+	<ul class="layout_block">
+<?php
+		renderEditControlForm($model->getLarawan(),$layout_id,1,$images,$image_text,$button_text,$button_text_url,$media_url,$store_id,$image_url,$position,1);
+		renderEditControlForm($model->getLarawan(),$layout_id,2,$images,$image_text,$button_text,$button_text_url,$media_url,$store_id,$image_url,$position,0);
+		renderEditControlForm($model->getLarawan(),$layout_id,3,$images,$image_text,$button_text,$button_text_url,$media_url,$store_id,$image_url,$position,0);
+		renderEditControlForm($model->getLarawan(),$layout_id,4,$images,$image_text,$button_text,$button_text_url,$media_url,$store_id,$image_url,$position,0);
+
+?>		
+	</ul>
+</div>
+
+<?php
+elseif($model->getLayoutType() == 'layout-4'):
+	define('BLOCK1',0);
+	define('BLOCK2',1);
+	define('BLOCK3',2);
+	define('BLOCK4',3);
+	
+	$layout_id = 4;
+	
+?>
+<div id="content_block">
+	<ul class="layout_block">
+<?php
+		renderEditControlForm($model->getLarawan(),$layout_id,1,$images,$image_text,$button_text,$button_text_url,$media_url,$store_id,$image_url,$position,1);
+		renderEditControlForm($model->getLarawan(),$layout_id,2,$images,$image_text,$button_text,$button_text_url,$media_url,$store_id,$image_url,$position,0);
+		renderEditControlForm($model->getLarawan(),$layout_id,3,$images,$image_text,$button_text,$button_text_url,$media_url,$store_id,$image_url,$position,0);
+		renderEditControlForm($model->getLarawan(),$layout_id,4,$images,$image_text,$button_text,$button_text_url,$media_url,$store_id,$image_url,$position,0);
+		
+?>		
+	</ul>
+</div>
+
+<?php
+elseif($model->getLayoutType() == 'layout-5'):
+	define('BLOCK1',0);
+	$current_block = 1;
+	$layout_id = 5;
+	
+	
+?>
+<div id="content_block">
+	<ul class="layout_block">
+<?php
+		renderEditControlForm($model->getLarawan(),$layout_id,1,$images,$image_text,$button_text,$button_text_url,$media_url,$store_id,$image_url,$position,1);
+?>
+	</ul>
+</div>
+<?php
+endif;
+?>
+
+<?php
+function renderEditControlForm($larawan,$layout_id,$current_block,$images,$image_text,$button_text,$button_text_url,$media_url,$store_id,$image_url,$position,$main_plate = 0){
+	
+?>
+	<li class="layout_block-block">
+			<div class="layout_block-label">BLOCK <?php echo $current_block ?></div>
+				<table class="layout-block-table">
+				<tbody>
+					<tr><td>
+					<input type="hidden" name="all_image" value="<?php echo $larawan; ?>">
+					<label for="image_text_1">Image Text</label>
+						<input class="input-text promo-textfield" name="block[<?php echo $current_block ?>][image_text]" id="image_text_1" type="text" value="<?php echo $image_text[$current_block-1] ?>"></td></tr><tr><td>
+					<label for="image_1">Upload Image</label>
+					<br/>
+					<input class="promo-textfield" name="filename_<?php echo $current_block ?>" id="filename_<?php echo $current_block ?>" readonly="1" type="file" value="<?php echo $images[$current_block-1] ?>"></td></tr><tr><td>
+					<?php 
+					
+					if($images[$current_block-1]!=""): ?>
+						<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'promoheader/' . $image_url . $images[$current_block-1]; ?>" onclick="imagePreview('layout1_block<?php echo $current_block ?>_image'); return false;">
+							<img id="layout1_block<?php echo $current_block ?>_image" src="<?php echo $image_url . $images[$current_block-1]; ?>" title="<?php echo $images[$current_block-1] ?>" alt="<?php echo $images[$current_block-1] ?>" height="22" width="22" class="small-image-preview v-middle">
+						</a>
+						<span class="delete-image">
+							<input type="checkbox" name="delete_image[<?php echo $current_block?>][delete]" value="1" class="checkbox" id="">
+							<label for="layout<?php echo $layout_id ?>_block<?php echo $current_block ?>_upload_image_delete"> Delete Image</label>
+							
+						</span>
+					<?php endif; ?>
+					<input type="hidden" name="delete_image[<?php echo $current_block ?>][value]" value="<?php echo $images[$current_block-1] ?>">
+						<br/>
+					<label for="button_text_1">Button Text</label>
+						<input class="input-text promo-textfield" name="block[<?php echo $current_block ?>][button_text]" id="button_text_1" type="text" value="<?php echo $button_text[$current_block-1] ?>"></td></tr><tr><td>
+						<label for="button_text_url_1">Button url</label>
+						<input class="input-text promo-textfield" name="block[<?php echo $current_block ?>][button_url]" id="button_text_url_1" type="text" value="<?php echo $button_text_url[$current_block-1] ?>"></td></tr>
+						
+						<tr>
+							<td>
+								<label for="promoheader-block-position">Position</label><br/>
+									
+									<select id="layout<?php echo $layout_id?>-block<?php echo $current_block ?>-position" id="layout<?php echo $layout_id?>-block<?php echo $current_block ?>-position" onchange="createCssForThisBlock(<?php echo $layout_id?>,<?php echo $current_block ?>,<?php echo $main_plate ?>)">
+										<option >-select position-</option>
+										<option value="promoheader_left:promoheader_bottom" <?php echo $position[$current_block-1]=='promoheader_left:promoheader_bottom'?"selected='selected'":'' ?> >LB (Bottom Left)</option>
+										<option value="promoheader_left:promoheader_top" <?php echo $position[$current_block-1]=='promoheader_left:promoheader_top'?"selected='selected'":'' ?>>LT (Left Top)</option>
+										<option value="promoheader_right:promoheader_bottom" <?php echo $position[$current_block-1]=='promoheader_right:promoheader_bottom'?"selected='selected'":'' ?>>RB (Right Bottom)</option>
+										<option value="promoheader_right:promoheader_top" <?php echo $position[$current_block-1]=='promoheader_right:promoheader_top'?"selected='selected'":'' ?>>RT (Right Top)</option>
+									</select>
+									
+							</td>
+						</tr>
+						<tr>
+							<td>
+									<input class="input-text" type="hidden" id="layout<?php echo $layout_id?>-block<?php echo $current_block ?>-position-css" name="block[<?php echo $current_block; ?>][position]" value="<?php echo $position[$current_block-1] ?>"/>
+									
+							</td>
+						</tr>
+					</tbody>
+				</table>
+	</li>
+<?php	
+}
+?>

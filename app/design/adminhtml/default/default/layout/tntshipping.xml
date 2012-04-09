@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <tntshipping_adminhtml_tntshipping_index>
+        <reference name="content">
+            <block type="tntshipping/adminhtml_tntshipping" name="tntshipping" />
+        </reference>
+    </tntshipping_adminhtml_tntshipping_index>
+
+	 <tntshipping_adminhtml_tntshippingdescription_index>
+        <reference name="content">
+            <block type="tntshipping/adminhtml_tntshippingdescription" name="tntshippingdescription" />
+        </reference>
+    </tntshipping_adminhtml_tntshippingdescription_index>
+</layout>

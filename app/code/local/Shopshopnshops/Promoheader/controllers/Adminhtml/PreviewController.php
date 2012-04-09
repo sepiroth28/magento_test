@@ -1,0 +1,1 @@
+<?phpclass Shopshopnshops_Promoheader_Adminhtml_PreviewController extends Mage_Adminhtml_Controller_action{	public function indexAction(){		echo "asdad";	}	}?>

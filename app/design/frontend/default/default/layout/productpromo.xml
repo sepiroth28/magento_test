@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+    </default>
+    <productpromo_index_index>
+        <reference name="content">
+            <block type="productpromo/productpromo" name="productpromo" template="productpromo/productpromo.phtml" />
+        </reference>
+    </productpromo_index_index>
+</layout> 

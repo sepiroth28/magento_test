@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * @category   Shopshopnshops
+ * @package    Shopshopnshops_Promoheader
+ * @author     ModuleCreator
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+ -->
+<config>
+    <modules>
+        <Shopshopnshops_Promoheader>
+            <version>0.1.6</version>
+        </Shopshopnshops_Promoheader>
+    </modules>
+    <frontend>
+        <routers>
+            <promoheader>
+                <use>standard</use>
+                <args>
+                    <module>Shopshopnshops_Promoheader</module>
+                    <frontName>promoheader</frontName>
+                </args>
+            </promoheader>
+			
+        </routers>
+        <layout>
+            <updates>
+                <promoheader>
+                    <file>promoheader.xml</file>
+                </promoheader>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        <routers>
+			<promoheader >
+				<use>admin</use>
+				<args>
+					<module>Shopshopnshops_Promoheader</module>
+					<frontName>promoheader</frontName>
+				</args>
+			</promoheader>
+        </routers>
+    </admin>
+    <adminhtml>
+		<menu>
+			<promoheader module="promoheader">
+				<title>Promoheader</title>
+				<sort_order>71</sort_order>               
+				<children>
+					<items module="promoheader">
+						<title>Manage Block layout</title>
+						<sort_order>1</sort_order>
+						<action>promoheader/adminhtml_promoheader</action>
+					</items>
+					<category_promoheader module="promoheader">
+						<title>Category Block layout</title>
+						<sort_order>2</sort_order>
+						<action>promoheader/adminhtml_categorypromoheader</action>
+					</category_promoheader>
+					<layoutmanager module="promoheader">
+						<title>Layout manager</title>
+						<sort_order>3</sort_order>
+						<action>promoheader/adminhtml_layoutmanager</action>
+					</layoutmanager>
+				</children>
+			</promoheader>
+		</menu>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<Shopshopnshops_Promoheader>
+							<title>Promoheader Module</title>
+							<sort_order>10</sort_order>
+						</Shopshopnshops_Promoheader>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+		<layout>
+			<updates>
+				<promoheader>
+					<file>promoheader.xml</file>
+				</promoheader>
+			</updates>
+		</layout>
+    </adminhtml>   
+    <global>
+        <models>
+            <promoheader>
+                <class>Shopshopnshops_Promoheader_Model</class>
+                <resourceModel>promoheader_mysql4</resourceModel>
+            </promoheader>
+			<categorypromoheader>
+                <class>Shopshopnshops_Promoheader_Model</class>
+                <resourceModel>promoheader_mysql4</resourceModel>
+            </categorypromoheader>
+			<layoutmanager>
+                <class>Shopshopnshops_Promoheader_Model</class>
+                <resourceModel>promoheader_mysql4</resourceModel>
+            </layoutmanager>
+            <promoheader_mysql4>
+                <class>Shopshopnshops_Promoheader_Model_Mysql4</class>
+                <entities>
+                    <promoheader>
+                        <table>promoheader</table>
+                    </promoheader>
+					<categorypromoheader>
+                        <table>category_promoheader</table>
+                    </categorypromoheader>
+					<layoutmanager>
+                        <table>promoheader_layout_manager</table>
+                    </layoutmanager>
+                </entities>
+            </promoheader_mysql4>
+			
+        </models>
+        <resources>
+            <promoheader_setup>
+                <setup>
+                    <module>Shopshopnshops_Promoheader</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </promoheader_setup>
+            <promoheader_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </promoheader_write>
+            <promoheader_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </promoheader_read>
+        </resources>
+        <blocks>
+            <promoheader>
+                <class>Shopshopnshops_Promoheader_Block</class>
+            </promoheader>
+			 <layoutmanager>
+                <class>Shopshopnshops_Layoutmanager_Block</class>
+            </layoutmanager>
+			<catgeorypromoheader>
+                <class>Shopshopnshops_Categorypromoheader_Block</class>
+            </catgeorypromoheader>
+        </blocks>
+        <helpers>
+            <promoheader>
+                <class>Shopshopnshops_Promoheader_Helper</class>
+            </promoheader>
+			 <layoutmanager>
+                <class>Shopshopnshops_Promoheader_Helper</class>
+            </layoutmanager>
+			<categorypromoheader>
+                <class>Shopshopnshops_Promoheader_Helper</class>
+            </categorypromoheader>
+        </helpers>
+    </global>
+</config>

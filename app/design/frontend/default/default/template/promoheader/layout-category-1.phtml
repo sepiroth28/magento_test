@@ -1,0 +1,128 @@
+<?php
+/*
+	rendering category promoheader
+*/
+//$model = Mage::getModel('promoheader/catalogpromoheader');
+
+define('BLOCK1',0);
+define('BLOCK2',1);
+define('BLOCK3',2);
+
+//$images = explode(';',$model->getLarawan());
+$current_store = Mage::app()->getStore()->getId();
+
+$category_promoheader = Mage::registry('current_category_promoheader');
+
+$images = explode(';',$category_promoheader->getLarawan());
+$image_text = explode(';',$category_promoheader->getImageTextArray());
+$button_text = explode(';',$category_promoheader->getButtonTextArray());
+$button_url = explode(';',$category_promoheader->getButtonUrlArray());
+$_positions = explode(';',$category_promoheader->getLayoutPositionCssCategory());
+
+	$store_id = explode(';',$category_promoheader->getStoreId());
+	$current_store    = Mage::app()->getStore()->getId();
+	
+	if(count($store_id)== 1){
+		if($store_id[0]==0){
+			$storeCode = 0;
+		}
+		else{
+			$storeCode = $current_store;
+		}
+	}
+	else{
+		$storeCode = $current_store;
+	}
+	
+$image_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'promoheader/' . $storeCode . '_';
+
+		$position[BLOCK1] = explode(':',$_positions[BLOCK1]);
+		$position[BLOCK2] = explode(':',$_positions[BLOCK2]);
+		$position[BLOCK3] = explode(':',$_positions[BLOCK3]);
+Mage::unregister('current_category_promoheader');
+?>
+<div class="promoheader">
+	<div class = "layout-category-1">
+		<div class="block-1" style="background:url('<?php echo $image_url . $images[BLOCK1] ?>');margin-right:3px;">
+			<table class="normal_plate" width="100%" border="0" cellpadding="0" cellspacing="0">
+				<tbody>
+					<tr>
+						<td class="<?php echo $position[BLOCK1][1]; ?>">
+					<?php if($image_text[BLOCK1]!=""): ?>	
+							<div class="image-text <?php echo $position[BLOCK1][0]; ?>">
+								<?php
+									echo $image_text[BLOCK1];
+								?>
+							</div>
+					<?php endif; ?>
+							<div class="dynamic-button-text <?php echo $position[BLOCK1][0]; ?>">
+								<a href="<?php echo $button_url[BLOCK1] ?>" class="btn-orange-small">
+									<span>
+										<!-- Button Text goes here -->
+										<?php
+											echo $button_text[BLOCK1];
+										?>
+									</span>
+								</a>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="block-1" style="background:url('<?php echo $image_url . $images[BLOCK2] ?>');margin-right:3px;">
+			<table class="normal_plate" width="100%" border="0" cellpadding="0" cellspacing="0">
+				<tbody>
+					<tr>
+						<td class="<?php echo $position[BLOCK2][1]; ?>" >
+					<?php if($image_text[BLOCK2]!=""): ?>
+							<div class="image-text <?php echo $position[BLOCK2][0]; ?>" >
+								<?php
+									echo $image_text[BLOCK2];
+								?>
+							</div>
+					<?php endif; ?>
+							<div class="dynamic-button-text <?php echo $position[BLOCK2][0]; ?>">
+								<a href="<?php echo $button_url[BLOCK2] ?>" class="btn-orange-small">
+									<span>
+										<!-- Button Text goes here -->
+										<?php
+											echo $button_text[BLOCK2];
+										?>
+									</span>
+								</a>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="block-1" style="background:url('<?php echo $image_url . $images[BLOCK3] ?>')">
+			<table class="normal_plate" width="100%" border="0" cellpadding="0" cellspacing="0">
+				<tbody>
+					<tr>
+						<td class="<?php echo $position[BLOCK3][1]; ?>" >
+					<?php if($image_text[BLOCK3]!=""): ?>	
+							<div class="image-text <?php echo $position[BLOCK3][0]; ?>" >
+								<?php
+									echo $image_text[BLOCK3];
+								?>
+							</div>
+					<?php endif; ?>
+							<div class="dynamic-button-text <?php echo $position[BLOCK3][0]; ?>">
+								<a href="<?php echo $button_url[BLOCK3] ?>" class="btn-orange-small">
+									<span>
+										<!-- Button Text goes here -->
+										<?php
+											echo $button_text[BLOCK3];
+										?>
+									</span>
+								</a>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

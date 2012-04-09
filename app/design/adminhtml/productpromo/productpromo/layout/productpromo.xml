@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <productpromo_adminhtml_productpromo_index>
+        <reference name="content">
+            <block type="productpromo/adminhtml_productpromo" name="productpromo" />
+        </reference>
+    </productpromo_adminhtml_productpromo_index>
+</layout>

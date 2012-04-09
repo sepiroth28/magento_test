@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * @category   Shopshopnshop
+ * @package    Shopshopnshop_Tntshipping
+ * @author     ModuleCreator
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+ -->
+<config>
+    <modules>
+        <Shopshopnshop_Tntshipping>
+            <version>0.1.1</version>
+        </Shopshopnshop_Tntshipping>
+    </modules>
+    <frontend>
+        <routers>
+            <tntshipping>
+                <use>standard</use>
+                <args>
+                    <module>Shopshopnshop_Tntshipping</module>
+                    <frontName>tntshipping</frontName>
+                </args>
+            </tntshipping>
+        </routers>
+        <layout>
+            <updates>
+                <tntshipping>
+                    <file>tntshipping.xml</file>
+                </tntshipping>
+            </updates>
+        </layout>
+		
+    </frontend>
+    <admin>
+        <routers>
+			<tntshipping>
+				<use>admin</use>
+				<args>
+					<module>Shopshopnshop_Tntshipping</module>
+					<frontName>tntshipping</frontName>
+				</args>
+			</tntshipping>
+        </routers>
+    </admin>
+    <adminhtml>
+		<menu>
+			<tntshipping module="tntshipping">
+				<title>Tntshipping</title>
+				<sort_order>71</sort_order>               
+				<children>
+					<import module="tntshipping">
+						<title>Import</title>
+						<sort_order>0</sort_order>
+						<action>tntshipping/adminhtml_tntshipping</action>
+					</import>
+					<items module="tntshippingdescription">
+						<title>Manage Items</title>
+						<sort_order>2</sort_order>
+						<action>tntshipping/adminhtml_tntshippingdescription</action>
+					</items>
+				</children>
+			</tntshipping>
+		</menu>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<Shopshopnshop_Tntshipping>
+							<title>Tntshipping Module</title>
+							<sort_order>10</sort_order>
+						</Shopshopnshop_Tntshipping>
+						<Shopshopnshop_Tntshippingdescription>
+							<title>Tntshippingdescription Module</title>
+							<sort_order>10</sort_order>
+						</Shopshopnshop_Tntshippingdescription>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+		<layout>
+			<updates>
+				<tntshipping>
+					<file>tntshipping.xml</file>
+				</tntshipping>
+			</updates>
+		</layout>
+		
+    </adminhtml>   
+    <global>
+		
+        <models>
+            <tntshipping>
+                <class>Shopshopnshop_Tntshipping_Model</class>
+                <resourceModel>tntshipping_mysql4</resourceModel>
+            </tntshipping>
+            <tntshipping_mysql4>
+                <class>Shopshopnshop_Tntshipping_Model_Mysql4</class>
+                <entities>
+                    <tntshipping>
+                        <table>tntshipping</table>
+                    </tntshipping>
+					<tntshippingdescription>
+                        <table>tntshippingdescription</table>
+                    </tntshippingdescription>
+                </entities>
+            </tntshipping_mysql4>
+			
+        </models>
+		<events>
+			  <controller_action_layout_generate_blocks_after>
+		            <observers>
+						<tntshipping>
+							<type>singleton</type>
+							<class>Shopshopnshop_Tntshipping_Model_Observer</class>
+							<method>helloWorld</method>
+						</tntshipping>
+		            </observers>
+             </controller_action_layout_generate_blocks_after>
+   		</events>
+        <resources>
+            <tntshipping_setup>
+                <setup>
+                    <module>Shopshopnshop_Tntshipping</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </tntshipping_setup>
+            <tntshipping_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </tntshipping_write>
+            <tntshipping_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </tntshipping_read>
+        </resources>
+        <blocks>
+            <tntshipping>
+                <class>Shopshopnshop_Tntshipping_Block</class>
+            </tntshipping>
+        </blocks>
+        <helpers>
+            <tntshipping>
+                <class>Shopshopnshop_Tntshipping_Helper</class>
+            </tntshipping>
+			<tntshippingdescription>
+                <class>Shopshopnshop_Tntshipping_Helper</class>
+            </tntshippingdescription>
+        </helpers>
+    </global>
+	<default>
+		<carriers>
+			<tntshipping>
+				<title>Tntshipping</title>
+				<name>Tntshipping</name>		
+				<model>tntshipping/carrier_tntshipping</model>		
+				<specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.</specificerrmsg>
+				
+			</tntshipping>
+		</carriers>
+	</default>
+</config>

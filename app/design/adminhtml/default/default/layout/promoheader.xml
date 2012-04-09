@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<default>
+		<reference name="head">
+			<action method="addCss"><name>promoheader.css</name></action>
+			<action method="addJs"><script>promoheader/adminhtml/promoheader.js</script></action>
+		</reference>
+	</default>
+	<promoheader_adminhtml_promoheader_editblock>
+		<block type="promoheader/adminhtml_promoheader"  name="root"  template="promoheader/layoutpreview_edit.phtml"/>	
+	</promoheader_adminhtml_promoheader_editblock>
+	
+	<promoheader_adminhtml_promoheader_renderblock>
+		<block type="promoheader/adminhtml_promoheader"  name="root"  template="promoheader/layoutpreview.phtml"/>	
+	</promoheader_adminhtml_promoheader_renderblock>
+	
+    <promoheader_adminhtml_promoheader_index>
+			<reference name="content">
+				<block type="promoheader/adminhtml_promoheader" name="layoutmanager">
+			</block>
+        </reference>
+    </promoheader_adminhtml_promoheader_index>
+
+	<promoheader_adminhtml_layoutmanager_index>
+			<reference name="content">
+				<block type="promoheader/adminhtml_layoutmanager" name="promoheader">
+			</block>
+        </reference>
+    </promoheader_adminhtml_layoutmanager_index>
+
+	<promoheader_adminhtml_categorypromoheader_index>
+			<reference name="head">
+				<action method="addJs"><script>promoheader/adminhtml/promoheader.js</script></action>
+			</reference>
+			<reference name="content">
+				<block type="promoheader/adminhtml_categorypromoheader" name="promoheader">
+					
+			</block>
+        </reference>
+    </promoheader_adminhtml_categorypromoheader_index>
+	
+	<promoheader_adminhtml_categorypromoheader_editblock>
+		<block type="promoheader/adminhtml_categorypromoheader"  name="root"  template="promoheader/layoutpreviewcategory_edit.phtml"/>	
+	</promoheader_adminhtml_categorypromoheader_editblock>
+	
+	<promoheader_adminhtml_categorypromoheader_renderblock>
+		<block type="promoheader/adminhtml_categorypromoheader"  name="root"  template="promoheader/layoutpreview.phtml"/>	
+	</promoheader_adminhtml_categorypromoheader_renderblock>
+</layout>

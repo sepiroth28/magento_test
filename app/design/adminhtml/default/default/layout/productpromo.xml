@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+		
+    </default>
+    <productpromo_adminhtml_productpromo_index>
+        <reference name="content">
+            <block type="productpromo/adminhtml_productpromo" name="productpromo" />
+        </reference>
+    </productpromo_adminhtml_productpromo_index>
+    <productpromo_adminhtml_productpromo_edit>
+        <reference name="head">
+			<action method="addJs"><script>productpromo/productpromo.js</script></action>
+	   </reference>
+    </productpromo_adminhtml_productpromo_edit>
+</layout>

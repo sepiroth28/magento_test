@@ -1,0 +1,20 @@
+<?php
+	$selected_layout =  $this->getRequest()->getParam("layout_id");
+	$blocks = $this->getSelectedLayoutBlocks($selected_layout);
+?>
+	<ul class="layout_block">
+<?php
+	foreach($blocks as $_block):
+?>
+		<li class="layout_block-block">
+			<div class="layout_block-label"><?php echo $_block['label']; ?></div>
+			<table class="layout-block-table">
+			<?php
+				echo $_block['child'];
+			?>
+			</table>
+		</li>
+<?php
+	endforeach;
+?>
+	</ul>

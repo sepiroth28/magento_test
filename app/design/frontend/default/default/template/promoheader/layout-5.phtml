@@ -1,0 +1,78 @@
+<?php
+/*
+*	Promoheder Layout2 
+*
+*/
+
+define('BLOCK_1',0);
+
+$selected_promoheader = Mage::getModel('promoheader/promoheader')->getCollection()
+							->addFieldToFilter('status',1)
+							->addFieldToFilter('`default`',1);
+		
+		foreach($selected_promoheader as $_promoheader){
+			$_promo = $_promoheader;
+		}
+
+
+	$images = explode(';',$_promo->getLarawan());
+	$image_text = explode(';',$_promo->getImageTextArray());
+	$button_text = explode(';',$_promo->getButtonTextArray());
+	$button_url = explode(';',$_promo->getButtonUrlArray());
+	$media_url = explode(';',$_promo->getMediaUrlArray());
+	$_positions = explode(';',$_promo->getLayoutPositionCss());
+	
+	$store_id = explode(';',$_promo->getStoreId());
+	$current_store    = Mage::app()->getStore()->getId();
+	
+	if(count($store_id)== 1){
+		if($store_id[0]==0){
+			$storeCode = 0;
+		}
+		else{
+			$storeCode = $current_store;
+		}
+	}
+	else{
+		$storeCode = $current_store;
+	}
+	
+	
+		$img_url[BLOCK_1] = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'promoheader/' . $storeCode . '_' . $images[BLOCK_1];
+	
+		$img_url[BLOCK_1] = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'promoheader/' . $storeCode . '_' . $images[BLOCK_1];
+		$position[BLOCK_1] = explode(':',$_positions[BLOCK_1]);
+		
+?>
+
+<div class="layout5" style="background-color:<?php echo $_promo->getBlockBgColor()?>">
+	<div class="layout5 block-1" style="background:url('<?php echo $img_url[BLOCK_1] ?>')">
+	<table class="main_plate" width="100%" border="0" cellpadding="0" cellspacing="0">
+		<tbody>
+			<tr>
+				<td class="<?php echo $position[BLOCK_1][1]; ?>">
+				<?php if($image_text[BLOCK1]!=""): ?>
+						<div class="image-text <?php echo $position[BLOCK_1][0]; ?>">
+							<?php 
+								echo $image_text[BLOCK_1];
+							?>
+						</div>
+				<?php endif; ?>
+						<div class="dynamic-button-text <?php echo $position[BLOCK_1][0]; ?>" style="margin-left: 3px;">
+							<a href="<?php echo $button_url[BLOCK_1] ?>" class="btn-orange-small">
+								<span>
+									<!-- Button Text goes here -->
+									<?php
+										echo $button_text[BLOCK_1];
+									?>
+								</span>
+							</a>
+						</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+	
+</div>
+<br style="clear:both;"/>

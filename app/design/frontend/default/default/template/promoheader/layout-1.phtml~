@@ -1,0 +1,123 @@
+<?php
+/*
+*	Promoheder Layout1 
+*
+*/
+define('BLOCK1',0);
+define('BLOCK2',1);
+define('BLOCK3',2);
+
+$selected_promoheader = Mage::getModel('promoheader/promoheader')->getCollection()
+							->addFieldToFilter('status',1)
+							->addFieldToFilter('`default`',1);
+		
+		foreach($selected_promoheader as $_promoheader){
+			$_promo = $_promoheader;
+		}
+
+
+	$images = explode(';',$_promo->getLarawan());
+	$image_text = explode(';',$_promo->getImageTextArray());
+	$button_text = explode(';',$_promo->getButtonTextArray());
+	$button_url = explode(';',$_promo->getButtonUrlArray());
+	$media_url = explode(';',$_promo->getMediaUrlArray());
+	$_positions = explode(';',$_promo->getLayoutPositionCss());
+	$store_id = explode(';',$_promo->getStoreId());
+	$current_store    = Mage::app()->getStore()->getId();
+	
+	if(count($store_id)== 1){
+		if($store_id[0]==0){
+			$storeCode = 0;
+		}
+		else{
+			$storeCode = $current_store;
+		}
+	}
+	else{
+		$storeCode = $current_store;
+	}
+		$block_1_image = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'promoheader/' . $storeCode . '_' . $images[BLOCK1];
+		$block_3_image = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'promoheader/' . $storeCode . '_' . $images[BLOCK2];
+	
+	$position[BLOCK1] = explode(':',$_positions[BLOCK1]);
+	$position[BLOCK2] = explode(':',$_positions[BLOCK2]);
+	$position[BLOCK3] = explode(':',$_positions[BLOCK3]);
+?>
+<div class="layout1" style="background-color:<?php echo $_promo->getBlockBgColor()?>">
+	<div class="layout1 block-1" style="background:url('<?php echo $block_1_image ?>')">
+		<table class="main_plate" width="100%" border="0" cellpadding="0" cellspacing="0">
+			<tbody>
+				<tr>
+					<td class="<?php echo $position[BLOCK1][1]; ?>">
+					<?php if($image_text[BLOCK1]!=""): ?>
+						<div class="image-text <?php echo $position[BLOCK1][0]; ?>">
+							<?php
+								echo $image_text[BLOCK1];
+							?>
+						</div>
+					<?php endif; ?>
+						<div class="dynamic-button-text <?php echo $position[BLOCK1][0]; ?>">
+							<a href="<?php echo $button_url[BLOCK1] ?>" class="btn-orange-small">
+								<span>
+									<!-- Button Text goes here -->
+									<?php
+										echo $button_text[BLOCK1];
+									?>
+								</span>
+							</a>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="right-section">
+			<div class="block-2">
+				<div id="block2_media" class="media">	
+					<object width="364" height="204">
+						<param name="movie" value="<?php echo $media_url[BLOCK2] ?>"></param>
+						<param name="allowFullScreen" value="true"></param>
+						<param name="allowscriptaccess" value="always"></param>
+						<embed src="<?php echo $media_url[BLOCK2] ?>" type="application/x-shockwave-flash" width="364" height="204" allowscriptaccess="always" allowfullscreen="true"></embed>
+					</object>
+				</div>
+			</div>
+			<div class="block-3" style="background:url('<?php echo $block_3_image ?>')">
+				<table class="normal_plate" width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tbody>
+						<tr>
+							<td class="<?php echo $position[BLOCK3][1]; ?>">
+							<?php if($image_text[BLOCK3]!=""): ?>
+								<div class="image-text <?php echo $position[BLOCK3][0]; ?>">
+									<?php
+										echo $image_text[BLOCK3];
+									?>
+								</div>
+							<?php endif; ?>
+								<div class="dynamic-button-text <?php echo $position[BLOCK3][0]; ?>" >
+									<a href="<?php echo $button_url[BLOCK3] ?>" class="btn-orange-small">
+										<span>
+											<!-- Button Text goes here -->
+											<?php
+												echo $button_text[BLOCK3];
+											?>
+										</span>
+									</a>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+	</div>
+</div>
+<br style="clear:both;"/>
+<script type="text/javascript">
+	$j("#block2_media").children("iframe").each(
+		function(){
+			$j(this).css("width","364px");
+			$j(this).css("height","204px");
+		}
+	)
+	
+</script>

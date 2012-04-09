@@ -1,0 +1,13 @@
+<?php
+$count = Mage::getRequest()->getParam("count");
+	for($x=1;$x<=$count;$x++){
+?>
+    <tr>
+        <td class="label"><label for="product_<?php echo $x ?>">Product for Block 1 <span class="required">*</span></label></td>
+    <td class="value">
+        <input id="product_<?php echo $x ?>" name="product_1" value="" class="required-entry input-text required-entry" type="text">            </td>
+    </tr>
+
+<?php	
+	}
+?>

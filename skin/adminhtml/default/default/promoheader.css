@@ -1,0 +1,102 @@
+div.layout-1{
+	width:350px;
+	height:135px;
+	border:1px solid #CCC;
+	background:url(images/promoheader/layout1.png) no-repeat;
+}
+div.layout-2{
+	width:350px;
+	height:135px;
+	border:1px solid #CCC;
+	background:url(images/promoheader/layout-2.png) no-repeat;
+}
+div.layout-3{
+	width:350px;
+	height:135px;
+	border:1px solid #CCC;
+	background:url(images/promoheader/layout3.png) no-repeat;
+}
+div.layout-4{
+	width:350px;
+	height:135px;
+	border:1px solid #CCC;
+	background:url(images/promoheader/layout4.png) no-repeat;
+}
+div.layout-5{
+	width:350px;
+	height:135px;
+	border:1px solid #CCC;
+	background:url(images/promoheader/layout5.png) no-repeat;
+}
+div.layout-category-1{
+	width:350px;
+	height:135px;
+	border:1px solid #CCC;
+	background:url(images/promoheader/layout_cat_1.png) no-repeat;
+}
+div.layout-category-2{
+	width:350px;
+	height:135px;
+	border:1px solid #CCC;
+	background:url(images/promoheader/layout_cat_2.png) no-repeat;
+}
+div.layout-category-3{
+	width:350px;
+	height:135px;
+	border:1px solid #CCC;
+	background:url(images/promoheader/layout_cat_3.png) no-repeat;
+}
+div.layout-category-4{
+	width:350px;
+	height:135px;
+	border:1px solid #CCC;
+	background:url(images/promoheader/layout_cat_4.png) no-repeat;
+}
+div.layout-category-5{
+	width:350px;
+	height:135px;
+	border:1px solid #CCC;
+	background:url(images/promoheader/layout_cat_5.png) no-repeat;
+}
+div.promoblock{
+	border:1px solid #CCC;
+	padding:5px;
+	width:100%;
+	height:100px;
+}
+ul.layout_block{
+	margin:0px;
+}
+ul.layout_block li.layout_block-block{
+	padding:10px;
+	background-color:#e5e5e5;
+	border:1px solid #CCC;
+	margin-bottom:10px;
+}
+.layout_block-label{
+	font-weight:bold;
+	padding:5px;
+	border-bottom:1px solid #CCC;
+	margin-bottom:5px;
+}
+.promo-textfield{
+	width:350px !important;
+}
+table.layout-block-table td{
+	padding:5px;
+}
+.content-block{
+	background:url('images/ajax-loader-tr.gif') no-repeat;
+	min-height:100px;
+	width:100%;
+}
+.load-layout-button{
+	cursor:pointer;
+	background-color:#e5e5e5;
+	border:1px solid #CCC;
+	height: 20px;
+    margin-top: 5px;
+    padding: 2px 10px;
+    width: 65px;
+	font-weight:bold;
+}

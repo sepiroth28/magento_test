@@ -1,0 +1,230 @@
+<?php
+/*
+*	Promoheder Layout2 
+*
+*/
+
+define('BLOCK1',0);
+define('BLOCK2',1);
+define('BLOCK3',2);
+define('BLOCK4',3);
+define('BLOCK5',4);
+define('BLOCK6',5);
+define('BLOCK7',6);
+
+$selected_promoheader = Mage::getModel('promoheader/promoheader')->getCollection()
+							->addFieldToFilter('status',1)
+							->addFieldToFilter('`default`',1);
+		
+		foreach($selected_promoheader as $_promoheader){
+			$_promo = $_promoheader;
+		}
+
+
+	$images = explode(';',$_promo->getLarawan());
+	$image_text = explode(';',$_promo->getImageTextArray());
+	$button_text = explode(';',$_promo->getButtonTextArray());
+	$button_url = explode(';',$_promo->getButtonUrlArray());
+	$media_url = explode(';',$_promo->getMediaUrlArray());
+	$_positions = explode(';',$_promo->getLayoutPositionCss());
+	$store_id = explode(';',$_promo->getStoreId());
+	$current_store    = Mage::app()->getStore()->getId();
+	
+	if(count($store_id)== 1){
+		if($store_id[0]==0){
+			$storeCode = 0;
+		}
+		else{
+			$storeCode = $current_store;
+		}
+	}
+	else{
+		$storeCode = $current_store;
+	}
+
+	$img_url[BLOCK1] = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'promoheader/' . $storeCode . '_' . $images[BLOCK1];
+	$img_url[BLOCK2] = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'promoheader/' . $storeCode . '_' . $images[BLOCK2];
+	$img_url[BLOCK3] = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'promoheader/' . $storeCode . '_' . $images[BLOCK3];
+	$img_url[BLOCK4] = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'promoheader/' . $storeCode . '_' . $images[BLOCK4];
+	$img_url[BLOCK5] = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'promoheader/' . $storeCode . '_' . $images[BLOCK5];
+	$img_url[BLOCK6] = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'promoheader/' . $storeCode . '_' . $images[BLOCK6];
+	
+	$position[BLOCK1] = explode(':',$_positions[BLOCK1]);
+	$position[BLOCK2] = explode(':',$_positions[BLOCK2]);
+	$position[BLOCK3] = explode(':',$_positions[BLOCK3]);
+	$position[BLOCK4] = explode(':',$_positions[BLOCK4]);
+	$position[BLOCK5] = explode(':',$_positions[BLOCK5]);
+	$position[BLOCK6] = explode(':',$_positions[BLOCK6]);
+?>
+
+<div class="layout2" style="background-color:<?php echo $_promo->getBlockBgColor()?>">
+	<div class="layout2 block-1" style="background:url('<?php echo $img_url[BLOCK1] ?>')">
+		<table class="main_plate" width="100%" border="0" cellpadding="0" cellspacing="0">
+			<tbody>
+				<tr>
+					<td class="<?php echo $position[BLOCK1][1]; ?>">
+					<?php if($image_text[BLOCK1]!=""): ?>
+						<div class="image-text <?php echo $position[BLOCK1][0]; ?>">
+							<?php 
+								echo $image_text[BLOCK1];
+							?>
+						</div>
+					<?php endif; ?>
+						<div class="dynamic-button-text <?php echo $position[BLOCK1][0]; ?>">
+							<a href="<?php echo $button_url[BLOCK1] ?>" class="btn-orange-small">
+								<span>
+									<!-- Button Text goes here -->
+									<?php
+										echo $button_text[BLOCK1];
+									?>
+								</span>
+							</a>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>				
+	</div>
+	<div class="right-section">
+			<div class="block-container-1">
+				<div class="layout2-block2" style="background:url('<?php echo $img_url[BLOCK2] ?>')">
+					<table class="normal_plate" width="100%" border="0" cellpadding="0" cellspacing="0">
+						<tbody>
+							<tr>
+								<td class="<?php echo $position[BLOCK2][1]; ?>">
+								<?php if($image_text[BLOCK2]!=""): ?>
+									<div class="image-text <?php echo $position[BLOCK2][0]; ?>">
+										<?php 
+											echo $image_text[BLOCK2];
+										?>
+									</div>
+								<?php endif; ?>
+									<div class="dynamic-button-text <?php echo $position[BLOCK2][0]; ?>">
+										<a href="<?php echo $button_url[BLOCK2] ?>" class="btn-orange-small">
+											<span>
+												<!-- Button Text goes here -->
+												<?php
+													echo $button_text[BLOCK2];
+												?>
+											</span>
+										</a>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>	
+				</div>
+				<div class="layout2-block3" style="background:url('<?php echo $img_url[BLOCK3] ?>')">
+					<table class="normal_plate" width="100%" border="0" cellpadding="0" cellspacing="0">
+						<tbody>
+							<tr>
+								<td class="<?php echo $position[BLOCK3][1]; ?>">
+								<?php if($image_text[BLOCK3]!=""): ?>
+									<div class="image-text <?php echo $position[BLOCK3][0]; ?>">
+										<?php 
+											echo $image_text[BLOCK3];
+										?>
+									</div>
+								<?php endif; ?>
+									<div class="dynamic-button-text <?php echo $position[BLOCK3][0]; ?>">
+										<a href="<?php echo $button_url[BLOCK3] ?>" class="btn-orange-small">
+											<span>
+												<!-- Button Text goes here -->
+												<?php
+													echo $button_text[BLOCK3];
+												?>
+											</span>
+										</a>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>	
+				</div>
+			</div>
+			<div class="block-container-2">
+				<div class="layout2-block4" style="background:url('<?php echo $img_url[BLOCK4] ?>')">
+					<table class="normal_plate" width="100%" border="0" cellpadding="0" cellspacing="0">
+						<tbody>
+							<tr>
+								<td class="<?php echo $position[BLOCK4][1]; ?>">
+								<?php if($image_text[BLOCK4]!=""): ?>
+									<div class="image-text <?php echo $position[BLOCK4][0]; ?>">
+										<?php 
+											echo $image_text[BLOCK4];
+										?>
+									</div>
+								<?php endif; ?>
+									<div class="dynamic-button-text <?php echo $position[BLOCK4][0]; ?>">
+										<a href="<?php echo $button_url[BLOCK4] ?>" class="btn-orange-small">
+											<span>
+												<!-- Button Text goes here -->
+												<?php
+													echo $button_text[BLOCK4];
+												?>
+											</span>
+										</a>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>	
+				</div>
+				<div class="layout2-block5" style="background:url('<?php echo $img_url[BLOCK5] ?>')">
+					<table class="normal_plate" width="100%" border="0" cellpadding="0" cellspacing="0">
+						<tbody>
+							<tr>
+								<td class="<?php echo $position[BLOCK5][1]; ?>">
+								<?php if($image_text[BLOCK5]!=""): ?>
+									<div class="image-text <?php echo $position[BLOCK5][0]; ?>">
+										<?php 
+											echo $image_text[BLOCK5];
+										?>
+									</div>
+								<?php endif; ?>
+									<div class="dynamic-button-text <?php echo $position[BLOCK5][0]; ?>">
+										<a href="<?php echo $button_url[BLOCK5] ?>" class="btn-orange-small">
+											<span>
+												<!-- Button Text goes here -->
+												<?php
+													echo $button_text[BLOCK5];
+												?>								
+											</span>
+										</a>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="layout2-block6" style="background:url('<?php echo $img_url[BLOCK6] ?>')">
+					<table class="normal_plate" width="100%" border="0" cellpadding="0" cellspacing="0">
+						<tbody>
+							<tr>
+								<td class="<?php echo $position[BLOCK6][1]; ?>">
+								<?php if($image_text[BLOCK6]!=""): ?>
+									<div class="image-text <?php echo $position[BLOCK6][0]; ?>">
+										<?php 
+											echo $image_text[BLOCK6];
+										?>
+									</div>
+								<?php endif; ?>
+									<div class="dynamic-button-text <?php echo $position[BLOCK6][0]; ?>">
+										<a href="<?php echo $button_url[BLOCK6] ?>" class="btn-orange-small">
+											<span>
+												<!-- Button Text goes here -->
+												<?php
+													echo $button_text[BLOCK6];
+												?>
+											</span>
+										</a>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+	</div>
+	<br style="clear:both;"/>
+</div>
